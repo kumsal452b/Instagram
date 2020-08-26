@@ -26,6 +26,7 @@ public class Login extends AppCompatActivity {
     EditText email,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("basladi");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth=FirebaseAuth.getInstance();
