@@ -3,6 +3,7 @@ package com.example.instagram;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +32,25 @@ public class Login extends AppCompatActivity {
 
     }
     public void signin(View v){
+        auth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+                .addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            Log.d("Succes","Created usersuccec");
+                            FirebaseUser user=auth.getCurrentUser();
+                            Toast.makeText(getApplicationContext(),"Succes",Toast.LENGTH_LONG).show();
+                            Intent intent=new Intent(getApplicationContext(),FeedActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                }).addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
 
+            }
+        });
     }
     public void signup(View v){
         auth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
@@ -42,6 +61,8 @@ public class Login extends AppCompatActivity {
                             Log.d("Succes","Created usersuccec");
                             FirebaseUser user=auth.getCurrentUser();
                             Toast.makeText(getApplicationContext(),"Succes",Toast.LENGTH_LONG).show();
+                            Intent intent=new Intent(getApplicationContext(),FeedActivity.class);
+                            startActivity(intent);
                         }
                     }
                 }).addOnFailureListener(this, new OnFailureListener() {
