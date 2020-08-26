@@ -3,6 +3,8 @@ package com.example.instagram;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -29,6 +31,12 @@ public class Login extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         email=findViewById(R.id.loginemail);
         password=findViewById(R.id.loginpassword);
+        FirebaseUser user=auth.getCurrentUser();
+        if (user!=null){
+            Intent intent=new Intent(getApplicationContext(),FeedActivity.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(),"Welcome",Toast.LENGTH_LONG).show();
+        }
 
     }
     public void signin(View v){
@@ -52,6 +60,8 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
+
     public void signup(View v){
         auth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
