@@ -37,6 +37,7 @@ public class Login extends AppCompatActivity {
             Intent intent=new Intent(getApplicationContext(),FeedActivity.class);
             startActivity(intent);
             Toast.makeText(getApplicationContext(),"Welcome",Toast.LENGTH_LONG).show();
+            Login.super.finish();
         }
 
     }
@@ -51,6 +52,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Succes",Toast.LENGTH_LONG).show();
                             Intent intent=new Intent(getApplicationContext(),FeedActivity.class);
                             startActivity(intent);
+                            Login.super.finish();
                         }
                     }
                 }).addOnFailureListener(this, new OnFailureListener() {
@@ -61,6 +63,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
 
 
     public void signup(View v){
