@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/upload"
-        android:title="Upload Post">
+        android:title="Upload Post"
+        android:icon="@drawable/yukleme">
     </item>
     <item android:id="@+id/exit"
-        android:title="Close">
+        android:title="Close"
+        android:iconTintMode="multiply"
+        android:icon="@drawable/exit"
+        >
     </item>
 </menu>
