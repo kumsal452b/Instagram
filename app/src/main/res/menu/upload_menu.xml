@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
     <item android:id="@+id/upload"
         android:title="Upload Post"
         android:icon="@drawable/yukleme">
@@ -7,7 +9,7 @@
     <item android:id="@+id/exit"
         android:title="Close"
         android:iconTintMode="multiply"
-        android:icon="@drawable/exit"
-        >
+        android:icon="@drawable/exit">
     </item>
+    </group>
 </menu>
