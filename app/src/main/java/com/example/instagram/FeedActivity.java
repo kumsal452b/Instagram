@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,8 +35,16 @@ public class FeedActivity extends AppCompatActivity {
         if (toggle.onOptionsItemSelected(item)){
             return true;
         }
+        if (item.getItemId()==R.id.upload){
+            Intent intent=new Intent(getApplicationContext(),upload.class);
+            startActivity(intent);
+        }
+        if (item.getItemId()==R.id.exit){
+            System.exit(0);
+        }
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onBackPressed() {
