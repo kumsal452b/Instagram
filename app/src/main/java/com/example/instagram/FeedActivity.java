@@ -14,24 +14,36 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+
 public class FeedActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
+
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
         drawerLayout=findViewById(R.id.drawer);
         toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        navigationView=findViewById(R.id.design_navigation_view);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setOn
     }
 
 
+    public void selectDrawerItem(MenuItem menuItem){
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        System.out.println("Tamamlandi");
         if (toggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -42,8 +54,10 @@ public class FeedActivity extends AppCompatActivity {
         if (item.getItemId()==R.id.exit){
             System.exit(0);
         }
+
         return super.onOptionsItemSelected(item);
     }
+
 
 
     @Override
