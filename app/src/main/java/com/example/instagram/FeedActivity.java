@@ -33,18 +33,13 @@ public class FeedActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView.setOn
     }
-
-
-    public void selectDrawerItem(MenuItem menuItem){
-
-    }
-
+    
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        System.out.println("Tamamlandi");
+
         if (toggle.onOptionsItemSelected(item)){
+            System.out.println("Tamamlandi");
             return true;
         }
         if (item.getItemId()==R.id.upload){
