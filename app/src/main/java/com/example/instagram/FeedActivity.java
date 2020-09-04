@@ -9,20 +9,24 @@ import android.app.AlertDialog;
 import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 
-public class FeedActivity extends AppCompatActivity {
+public class FeedActivity extends AppCompatActivity  {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
-
+    NavigationView navbar;
     NavigationView navigationView;
+    IntentFilter intentFilter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,22 @@ public class FeedActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView=findViewById(R.id.navbars);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.exit:
+                        System.exit(0);
+                        break;
+                    case  R.id.upload:
+                        Intent intent=new Intent(FeedActivity.this,upload.class);
+                        startActivity(intent);
+                }
+                return false;
+            }
+        });
+
     }
     
     @Override
@@ -41,13 +61,6 @@ public class FeedActivity extends AppCompatActivity {
         if (toggle.onOptionsItemSelected(item)){
             System.out.println("Tamamlandi");
             return true;
-        }
-        if (item.getItemId()==R.id.upload){
-            Intent intent=new Intent(getApplicationContext(),upload.class);
-            startActivity(intent);
-        }
-        if (item.getItemId()==R.id.exit){
-            System.exit(0);
         }
 
         return super.onOptionsItemSelected(item);
