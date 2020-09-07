@@ -20,14 +20,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class upload extends AppCompatActivity {
 
@@ -57,10 +62,21 @@ public class upload extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageReference reference=FirebaseStorage.getInstance().getReference();
-                reference.child("images/images.png");
-                reference.putFile(uri);
+                UUID uuid=UUID.randomUUID();
 
+                StorageReference reference=FirebaseStorage.getInstance().getReference();
+                reference.child("images/"+uuid+".png").putFile(uri).addOnSuccessListener(upload.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        
+
+                    }
+                }).addOnFailureListener(upload.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(upload.this,e.getLocalizedMessage(),Toast.LENGTH_LONG);
+                    }
+                })
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
