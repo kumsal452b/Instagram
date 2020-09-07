@@ -58,27 +58,6 @@ public class upload extends AppCompatActivity {
         myRef=database.getReference();
         firebaseAuth=FirebaseAuth.getInstance();
         storageReference= FirebaseStorage.getInstance().getReference();
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UUID uuid=UUID.randomUUID();
-
-                StorageReference reference=FirebaseStorage.getInstance().getReference();
-                reference.child("images/"+uuid+".png").putFile(uri).addOnSuccessListener(upload.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        
-
-                    }
-                }).addOnFailureListener(upload.this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(upload.this,e.getLocalizedMessage(),Toast.LENGTH_LONG);
-                    }
-                })
-            }
-        });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +71,31 @@ public class upload extends AppCompatActivity {
 
             }
         });
+    }
+    public void tikla(View view){
+        final UUID uuid=UUID.randomUUID();
+
+        final StorageReference reference=FirebaseStorage.getInstance().getReference();
+        reference.child("images/"+uuid+".png").putFile(uri).addOnSuccessListener(upload.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                StorageReference newreferans=FirebaseStorage.getInstance().getReference("images/"+uuid+".png");
+                reference.getDownloadUrl().addOnSuccessListener(upload.this, new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        String string=uri+"";
+                        Toast.makeText(upload.this,string,Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
+        }).addOnFailureListener(upload.this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(upload.this,e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     @Override
