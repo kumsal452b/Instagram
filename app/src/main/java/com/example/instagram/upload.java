@@ -80,7 +80,7 @@ public class upload extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 StorageReference newreferans=FirebaseStorage.getInstance().getReference("images/"+uuid+".png");
-                reference.getDownloadUrl().addOnSuccessListener(upload.this, new OnSuccessListener<Uri>() {
+                newreferans.getDownloadUrl().addOnSuccessListener(upload.this, new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         String string=uri+"";
