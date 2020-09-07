@@ -33,11 +33,12 @@ public class FeedActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_feed);
         drawerLayout=findViewById(R.id.drawer);
         toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
-        navigationView=findViewById(R.id.design_navigation_view);
+        navigationView=findViewById(R.id.nav_bar);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView=findViewById(R.id.navbars);
+        navigationView=findViewById(R.id.nav_bar);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

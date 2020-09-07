@@ -36,7 +36,7 @@ public class upload extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         imageView=findViewById(R.id.imageView);
-        btn=findViewById(R.id.upload);
+        btn=findViewById(R.id.button);
         command=findViewById(R.id.commandpost);
 
         btn.setOnClickListener(new View.OnClickListener() {

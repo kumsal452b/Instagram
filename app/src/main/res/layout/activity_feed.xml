@@ -15,9 +15,8 @@
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/upload_menu"
         android:layout_gravity="start"
-        android:id="@+id/navbars"/>
-
-
+        app:menu="@menu/upload_menu"
+        android:id="@+id/nav_bar"
+    />
 </androidx.drawerlayout.widget.DrawerLayout>
