@@ -21,6 +21,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.io.IOException;
 
 public class upload extends AppCompatActivity {
@@ -31,6 +37,10 @@ public class upload extends AppCompatActivity {
     EditText command;
     Button btn;
     Bitmap selectedImage;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    FirebaseAuth firebaseAuth;
+    StorageReference storageReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +48,11 @@ public class upload extends AppCompatActivity {
         imageView=findViewById(R.id.imageView);
         btn=findViewById(R.id.button);
         command=findViewById(R.id.commandpost);
-
+        database=FirebaseDatabase.getInstance();
+        myRef=database.getReference();
+        firebaseAuth=FirebaseAuth.getInstance();
+        storageReference= FirebaseStorage.getInstance().getReference();
+        
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
