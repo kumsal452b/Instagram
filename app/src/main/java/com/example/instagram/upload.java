@@ -41,6 +41,7 @@ public class upload extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseAuth firebaseAuth;
     StorageReference storageReference;
+    Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +53,13 @@ public class upload extends AppCompatActivity {
         myRef=database.getReference();
         firebaseAuth=FirebaseAuth.getInstance();
         storageReference= FirebaseStorage.getInstance().getReference();
-        
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                StorageReference reference=FirebaseStorage.getInstance().getReference();
+                reference.child("images/images.png");
+                reference.putFile(uri);
 
             }
         });
@@ -89,7 +93,8 @@ public class upload extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==1 && data!=null){
             try {
-                selectedImage=MediaStore.Images.Media.getBitmap(this.getContentResolver(),MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                 uri=MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                selectedImage=MediaStore.Images.Media.getBitmap(this.getContentResolver(),uri);
                 imageView.setImageBitmap(selectedImage);
             } catch (IOException e) {
                 e.printStackTrace();
