@@ -35,9 +35,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class upload extends AppCompatActivity {
-
-
-
     ImageView imageView;
     EditText command;
     Button btn;
