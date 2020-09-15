@@ -84,7 +84,13 @@ public class upload extends AppCompatActivity {
                         String string=uri+"";
                         Toast.makeText(upload.this,string,Toast.LENGTH_LONG).show();
                         FirebaseUser user=firebaseAuth.getCurrentUser();
-                        String userCommit=
+                        String email=user.getEmail();
+                        String userCommit=command.getText().toString();
+                        UUID uuid1=UUID.randomUUID();
+                        myRef.child("Post").child(uuid1+"").child("userEmail").setValue(email);
+                        myRef.child("Post").child(uuid1+"").child("Commit").setValue(userCommit);
+                        myRef.child("Post").child(uuid1+"").child("Dowload URL").setValue(string);
+                        Toast.makeText(upload.this, "Uploaded Success", Toast.LENGTH_SHORT).show();
                     }
                 });
 
