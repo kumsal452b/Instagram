@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -82,8 +83,11 @@ public class upload extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         String string=uri+"";
                         Toast.makeText(upload.this,string,Toast.LENGTH_LONG).show();
+                        FirebaseUser user=firebaseAuth.getCurrentUser();
+                        String userCommit=
                     }
                 });
+
 
             }
         }).addOnFailureListener(upload.this, new OnFailureListener() {
