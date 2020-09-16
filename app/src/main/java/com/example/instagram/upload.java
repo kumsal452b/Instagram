@@ -91,6 +91,7 @@ public class upload extends AppCompatActivity {
                         myRef.child("Post").child(uuid1+"").child("Dowload URL").setValue(string);
                         Toast.makeText(upload.this, "Uploaded Success", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(getApplicationContext(),FeedActivity.class);
+                        upload.super.finish();
                         startActivity(intent);
                     }
                 });
